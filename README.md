@@ -1,6 +1,10 @@
 # Wat?
 It's [servers.dat](http://code.svn.wordpress.org/servermattic/etc/servers.dat) syntax highlighting.  This will mean almost nothing to almost everybody...
 
+# What's it look like?
+
+![example](example.png)
+
 # Installation
 
 ## Normal Vim
