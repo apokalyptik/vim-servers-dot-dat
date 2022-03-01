@@ -1,7 +1,9 @@
 # Wat?
 It's [servers.dat](http://code.svn.wordpress.org/servermattic/etc/servers.dat) syntax highlighting for Vim.  This will mean almost nothing to almost everybody...
 
-# What's it look like?
+## What's it, like, do?
+
+This, mainly
 
 ![example](example.png)
 
