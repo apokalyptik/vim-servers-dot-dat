@@ -1,5 +1,5 @@
 # Wat?
-It's servers.dat syntax highlighting.  This will mean almost nothing to almost everybody...
+It's [servers.dat](http://code.svn.wordpress.org/servermattic/etc/servers.dat) syntax highlighting.  This will mean almost nothing to almost everybody...
 
 # Installation
 
