@@ -3,16 +3,17 @@ if exists("b:current_syntax")
 endif
 
 syntax match sddFieldDelim "\v:"
-syntax match sddRoleDelim "\v,"
-
-syntax match sddEXTRA    /.\{-}\(:\|$\)/ contains=sddFieldDelim              nextgroup=sddSID
-syntax match sddPRICE    /.\{-}\(:\|$\)/ contains=sddFieldDelim              nextgroup=sddEXTRA
-syntax match sddROLES    /.\{-}\(:\|$\)/ contains=sddFieldDelim,sddRoleDelim nextgroup=sddPRICE
-syntax match sddLAN      /.\{-}\(:\|$\)/ contains=sddFieldDelim              nextgroup=sddROLES
-syntax match sddHOSTNAME /.\{-}\(:\|$\)/ contains=sddFieldDelim              nextgroup=sddLAN
-syntax match sddWAN      /.\{-}\(:\|$\)/ contains=sddFieldDelim              nextgroup=sddHOSTNAME
-syntax match sddDC       /.\{-}\(:\|$\)/ contains=sddFieldDelim              nextgroup=sddWAN
-syntax match sddSID      /.\{-}\(:\|$\)/ contains=sddFieldDelim              nextgroup=sddDC
+syntax match sddRoleDelim  "\v,"
+syntax match sddRoleBase   "\v[^,]+-base"
+syntax match sddRoleDc     "\vdc-[^,]+"
+syntax match sddEXTRA      /.\{-}\(:\|$\)/ nextgroup=sddSID      contains=sddFieldDelim
+syntax match sddPRICE      /.\{-}\(:\|$\)/ nextgroup=sddEXTRA    contains=sddFieldDelim
+syntax match sddROLES      /.\{-}\(:\|$\)/ nextgroup=sddPRICE    contains=sddFieldDelim,sddRoleBase,sddRoleDc,sddRoleDelim
+syntax match sddLAN        /.\{-}\(:\|$\)/ nextgroup=sddROLES    contains=sddFieldDelim
+syntax match sddHOSTNAME   /.\{-}\(:\|$\)/ nextgroup=sddLAN      contains=sddFieldDelim
+syntax match sddWAN        /.\{-}\(:\|$\)/ nextgroup=sddHOSTNAME contains=sddFieldDelim
+syntax match sddDC         /.\{-}\(:\|$\)/ nextgroup=sddWAN      contains=sddFieldDelim
+syntax match sddSID        /.\{-}\(:\|$\)/ nextgroup=sddDC       contains=sddFieldDelim
 
 syntax match sddComment "\v#.*$"
 
@@ -24,8 +25,10 @@ highlight sddWAN        ctermfg='darkcyan'      guifg='darkcyan'
 highlight sddHOSTNAME   ctermfg='lightgreen'    guifg='lightgreen'
 highlight sddLAN        ctermfg='darkred'       guifg='darkred'
 highlight sddROLES      ctermfg='lightblue'     guifg='lightblue'
+highlight sddRoleBase   ctermfg='lightcyan'     guifg='lightcyan'
+highlight sddRoleDC     ctermfg='lightcyan'     guifg='lightcyan'
 highlight sddPRICE      ctermfg='darkgreen'     guifg='darkgreen'
-highlight sddEXTRA      ctermfg='lightcyan'     guifg='lightcyan'
+highlight sddEXTRA      ctermfg='lightyellow'   guifg='lightyellow'
 
 highlight sddFieldDelim ctermfg='NONE'          guifg='NONE'
 highlight sddRoleDelim  ctermfg='NONE'          guifg='NONE'
