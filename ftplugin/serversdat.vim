@@ -1,6 +1,14 @@
 setlocal nowrap
 setlocal nospell
 
+function! ServersDatCurrentHostname()
+	let l:l = split( getline( '.' ), ':' )
+	if len( l:l ) < 4
+		return 'Unknown Hostname'
+	endif
+	return l:l[3]
+endfunction
+
 function! ServersdatCurrentColumnName()
 	if !exists("*synstack")
 		return ''
@@ -61,7 +69,7 @@ endfunction
 
 function! ServersdatAirlineStatusFunc(...)
 	if &filetype == 'serversdat'
-		let w:airline_section_a = 'servers.dat'
+		let w:airline_section_a = '%{ServersDatCurrentHostname()}'
 		let w:airline_section_b = '%{ServersdatCurrentColumnName()}'
 		let w:airline_section_c = '%{ServersdatCurrentColumnSubName()}'
 	endif
