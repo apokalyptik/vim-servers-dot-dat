@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+# Servers.dat highlighting
+# Lazy Installs/updates
+
+# Wheverever this lands in the repo
+# Can just:
+# curl <thisfile> | bash
+# and done
+
+set -euo pipefail
+
+ftdetect="ftdetect"
+syntax="syntax"
+ftplugin="ftplugin"
+
+LOCAL_PATH="$HOME/.vim/"
+REMOTE_URL="https://raw.githubusercontent.com/apokalyptik/vim-servers-dot-dat/main/"
+FILE="serversdat.vim"
+SLASH="/"
+
+DIR_EXISTS=false
+for dir in \
+	$LOCAL_PATH$ftdetect \
+	$LOCAL_PATH$syntax \
+	$LOCAL_PATH$ftplugin
+do
+	if [ -d "$dir" ]; then
+		DIR_EXISTS=true
+		break
+	fi
+done
+
+OVERWRITE=false
+if [[ "$DIR_EXISTS" == true ]]; then
+	echo "One or more of these directories exist already:"
+	echo "$LOCAL_PATH$ftdetect"
+	echo "$LOCAL_PATH$syntax"
+	echo "$LOCAL_PATH$ftplugin"
+	while true; do
+		read -p "Overwrite existing dir(s)? [y/n]" yn
+		case $yn in
+			[Yy]* ) OVERWRITE=true; break;;
+			[Nn]* ) exit;;
+			* ) echo "[y/n]";;
+		esac
+	done
+fi
+
+## If everything is good, make the directories and curl
+for dir in \
+    $LOCAL_PATH$ftdetect \
+    $LOCAL_PATH$syntax \
+	$LOCAL_PATH$ftplugin
+	do
+		mkdir -p $dir
+done
+
+curl $REMOTE_URL$ftdetect$SLASH$FILE > $LOCAL_PATH$ftdetect$SLASH$FILE
+curl $REMOTE_URL$syntax$SLASH$FILE > $LOCAL_PATH$syntax$SLASH$FILE
+curl $REMOTE_URL$ftplugin$SLASH$FILE > $LOCAL_PATH$ftplugin$SLASH$FILE
+
+echo "Done."
