@@ -86,11 +86,11 @@ function! ServersdatManualStatusline()
 		set statusline+=%#sddshn#
 		set statusline+=%{ServersDatCurrentHostname()}
 		set statusline+=%#sddsnone#
-		set statusline+=\ >\
+		set statusline+=\ >\ 
 		set statusline+=%#sddscn#
 		set statusline+=%{ServersdatCurrentColumnName()}
 		set statusline+=%#sddsnone#
-		set statusline+=\ >\
+		set statusline+=\ >\ 
 		set statusline+=%#sddssn#
 		set statusline+=%{ServersdatCurrentColumnSubName()}
 		set statusline+=%#sddsnone#
