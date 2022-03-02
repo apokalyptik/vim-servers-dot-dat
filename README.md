@@ -9,6 +9,10 @@ This, mainly
 
 # Installation
 
+For the lazy:
+
+`curl https://github.com/rfaile313/vim-servers-dot-dat/blob/main/doitforme | bash`
+
 ## Plain old regular standard VIM
 
 Put these files in these places
