@@ -75,6 +75,30 @@ function! ServersdatAirlineStatusFunc(...)
 	endif
 endfunction
 
+function! ServersdatManualStatusline()
+	if &filetype == 'serversdat'
+		highlight sddshn   ctermbg=Black ctermfg=LightGreen
+		highlight sddscn   ctermbg=Black ctermfg=LightBlue
+		highlight sddssn   ctermbg=Black ctermfg=LightCyan
+		highlight sddsnone ctermbg=Black ctermfg=White
+		set laststatus=2
+		set statusline=
+		set statusline+=%#sddshn#
+		set statusline+=%{ServersDatCurrentHostname()}
+		set statusline+=%#sddsnone#
+		set statusline+=\ >\
+		set statusline+=%#sddscn#
+		set statusline+=%{ServersdatCurrentColumnName()}
+		set statusline+=%#sddsnone#
+		set statusline+=\ >\
+		set statusline+=%#sddssn#
+		set statusline+=%{ServersdatCurrentColumnSubName()}
+		set statusline+=%#sddsnone#
+	endif
+endfunction
+
 if exists( 'g:loaded_airline' )
 	call airline#add_statusline_func('ServersdatAirlineStatusFunc')
+else
+	call ServersdatManualStatusline()
 endif
